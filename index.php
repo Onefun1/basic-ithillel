@@ -61,8 +61,10 @@ echo '4. Создать функцию которая определит ско�
 echo '<br>';
 
 
-function getCountOfSquares($square1 = 9, $square2 = 3) : float {
-    $count = 0;
+function getCountOfSquares($a = 9, $b= 3) : float {
+    $square1 = $a * $a;
+    $square2 = $b * $b;
+
     if ($square1 == $square2){
         $count = 1;
     } else if ($square1 > $square2){
