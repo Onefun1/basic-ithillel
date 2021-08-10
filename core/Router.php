@@ -2,11 +2,7 @@
 
 namespace Core;
 
-//use App\SecondClass;
 use App\Controllers\PageNotFound;
-use App\Controllers\About;
-use App\Controllers\Gallery;
-use App\Controllers\Index;
 
 final class Router
 {
@@ -51,6 +47,8 @@ final class Router
 
         if (method_exists($classNamespace, $method)){
             $classObj->$method();
+        }else {
+          $this->createDefaultClass();
         }
     }
 }
