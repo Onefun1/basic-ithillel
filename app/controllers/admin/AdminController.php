@@ -4,13 +4,18 @@ namespace Controllers\Admin;
 
 use Core\View;
 
-class AdminController{
+class AdminController {
 
     public $arrData = ['firstName' => 'John', 'lastName' => 'Smith'];
 
     public function __construct() 
     {
-      View::view('admin','admin');
+      echo '<h1>IndexController</h1>';
+    }
+
+    public function  render()
+    {
+        View::view('admin','admin');
     }
 
     public function logIn() 
