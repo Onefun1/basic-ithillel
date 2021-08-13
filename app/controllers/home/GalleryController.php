@@ -1,10 +1,13 @@
 <?php
-namespace App\Controllers;
 
-class Gallery{
+namespace Controllers\Home;
+
+use Core\View;
+
+class GalleryController{
 
     public function __construct() {
-        echo '<h1>Gallery Controller</h1>';
+      View::view('home','gallery');
     }
 
     public function help(){

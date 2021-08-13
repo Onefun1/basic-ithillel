@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Controllers;
+namespace Controllers\Home;
 
-class Index{
+use Core\View;
+
+class IndexController{
+
+  public $dataArr = ['data1' => 'Text1', 'data2' => 'Text2'];
 
     public function __construct() {
-        echo '<h1>Index Controller</h1>';
+      View::view('home','index', $this->dataArr);
     }
 
     public function help(){
