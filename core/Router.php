@@ -11,7 +11,7 @@ final class Router
     private $segments;
     private $controller;
     private $method = NULL;
-    private $controllerNamespace = 'Controllers\\Home\\';
+    private string $controllerNamespace = 'Controllers\\Home\\';
 
 
     public function __construct()
@@ -47,7 +47,6 @@ final class Router
         }
         $list .= ' /' . $method;
       }
-
       echo 'Sorry, there is no such method, maybe you wanted to use: ' . $list;
     }
 
@@ -68,6 +67,12 @@ final class Router
         }
 
         $classObj = new $classNamespace;
+
+        if ($this->method == 'render')
+        {
+            $this->noMethodHelper($classNamespace);
+            return;
+        }
 
         if (method_exists($classObj, $this->method))
         {

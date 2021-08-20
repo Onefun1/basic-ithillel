@@ -2,20 +2,25 @@
 
 namespace Controllers\Home;
 
-use Core\View;
+use App\Controllers\AppController;
+use App\Model\IndexModel;
 
-class IndexController{
+class IndexController extends AppController {
 
-  public $dataArr = ['data1' => 'Text1', 'data2' => 'Text2'];
+    private string $folder = 'home';
+    private string $fileName = 'index';
 
     public function __construct() 
     {
       echo '<h1>IndexController</h1>';
     }
 
-    public function  render()
+    public function  index()
     {
-      View::view('home','index', $this->dataArr);
+        $modelClass = new IndexModel();
+        $list = $modelClass->getList();
+
+        $this->render($this->folder, $this->fileName, $list);
     }
 
     public function help()

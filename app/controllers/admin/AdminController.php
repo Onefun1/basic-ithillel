@@ -2,27 +2,36 @@
 
 namespace Controllers\Admin;
 
-use Core\View;
+use App\Controllers\AppController;
+use App\model\AdminModel;
 
-class AdminController {
+class AdminController extends AppController {
 
-    public $arrData = ['firstName' => 'John', 'lastName' => 'Smith'];
+    private $modelClass;
+    private string $folder = 'admin';
+    private string $fileName = 'admin';
 
     public function __construct() 
     {
-      echo '<h1>IndexController</h1>';
+      echo '<h1>AdminController</h1>';
+      $this->modelClass = new AdminModel();
     }
 
-    public function  render()
+    public function index()
     {
-        View::view('admin','admin');
+        $list = $this->modelClass->getAdminList();
+        $this->render($this->folder, $this->fileName, $list);
     }
 
     public function logIn() 
     {
-      echo '<h3>Welcome!</h3>';
-      foreach ($this->arrData as $key => $value) {
-        echo ' ' . $value;
-      }
-    }
+        $adminInfo = $this->modelClass->getAdminInfo();
+
+        echo '<h3>Welcome!</h3>';
+
+        foreach ($adminInfo as $key => $value)
+          {
+            echo ' ' . $value;
+          }
+        }
 }

@@ -2,18 +2,25 @@
 
 namespace Controllers\Home;
 
-use Core\View;
+use App\Controllers\AppController;
+use App\Model\GalleryModel;
 
-class GalleryController{
+class GalleryController extends AppController{
+
+    private string $folder = 'home';
+    private string $fileName = 'gallery';
 
     public function __construct()
     {
         echo '<h1>GalleryController</h1>';
     }
 
-    public function  render()
+    public function index()
     {
-        View::view('home','gallery');
+        $modelClass = new GalleryModel();
+        $list = $modelClass->getList();
+
+        $this->render($this->folder, $this->fileName, $list);
     }
 
     public function help()
