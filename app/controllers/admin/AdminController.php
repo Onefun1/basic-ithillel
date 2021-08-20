@@ -19,7 +19,7 @@ class AdminController extends AppController {
 
     public function index()
     {
-        $list = $this->modelClass->getAdminList();
+        $list = $this->modelClass->test();
         $this->render($this->folder, $this->fileName, $list);
     }
 

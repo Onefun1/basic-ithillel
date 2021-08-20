@@ -26,4 +26,10 @@ class AdminModel extends AboutModel
     {
         return $this->arrDataAdmin;
     }
+    public function test(): array
+    {
+       $connect = $this->getConnectionToDataBase();
+       $adminsList = mysqli_query($connect, "SELECT * FROM `admin`");
+       return mysqli_fetch_all($adminsList);
+    }
 }

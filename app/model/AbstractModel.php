@@ -16,4 +16,13 @@ abstract class AbstractModel
     {
         return $this->titleArray;
     }
+    protected function getConnectionToDataBase(){
+        $connect = mysqli_connect('127.0.0.1', 'root', 'root', 'basic-ithillel');
+        if (!$connect)
+        {
+            echo '<h4> Error connection dataBase!</h4>';
+            return;
+        }
+        return $connect;
+    }
 }
