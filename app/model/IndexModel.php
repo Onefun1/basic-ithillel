@@ -2,6 +2,8 @@
 
 namespace App\model;
 
+use Common\Database\DbConnector;
+
 class IndexModel extends AbstractModel
 {
     public $titleArray =

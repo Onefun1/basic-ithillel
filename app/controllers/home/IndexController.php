@@ -15,11 +15,10 @@ class IndexController extends AppController {
       echo '<h1>IndexController</h1>';
     }
 
-    public function  index()
+    public function index()
     {
         $modelClass = new IndexModel();
-        $list = $modelClass->getList();
-
+        $list = $modelClass->getAllTitles('indexpage');
         $this->render($this->folder, $this->fileName, $list);
     }
 

@@ -18,6 +18,14 @@ class AboutController extends AppController{
     public function index()
     {
         $modelClass = new AboutModel();
+        $list = $modelClass->getAllTitles('about');
+
+        $this->render($this->folder, $this->fileName, $list);
+    }
+
+    public function local()
+    {
+        $modelClass = new AboutModel();
         $list = $modelClass->getList();
 
         $this->render($this->folder, $this->fileName, $list);

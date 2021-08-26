@@ -3,6 +3,7 @@
 namespace Controllers\Home;
 
 use App\Controllers\AppController;
+use App\Model\AboutModel;
 use App\Model\GalleryModel;
 
 class GalleryController extends AppController{
@@ -16,6 +17,14 @@ class GalleryController extends AppController{
     }
 
     public function index()
+    {
+        $modelClass = new GalleryModel();
+        $list = $modelClass->getAllTitles('gallery');
+
+        $this->render($this->folder, $this->fileName, $list);
+    }
+
+    public function local()
     {
         $modelClass = new GalleryModel();
         $list = $modelClass->getList();

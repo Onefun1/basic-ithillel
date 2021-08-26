@@ -23,6 +23,12 @@ class AdminController extends AppController {
         $this->render($this->folder, $this->fileName, $list);
     }
 
+    public function find()
+    {
+        $list = $this->modelClass->findSmith();
+        $this->render($this->folder, $this->fileName, $list);
+    }
+
     public function logIn() 
     {
         $adminInfo = $this->modelClass->getAdminInfo();

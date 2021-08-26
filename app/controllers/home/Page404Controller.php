@@ -8,6 +8,8 @@ class Page404Controller{
 
     public function __construct() 
     {
+        header("HTTP/1.1 404 Not Found");
+        header("Status: 404 Not Found");
         echo '<h1>Page404Controller</h1>';
     }
 
@@ -15,6 +17,4 @@ class Page404Controller{
     {
       View::view('home','page404');
     }
-
-
 }
