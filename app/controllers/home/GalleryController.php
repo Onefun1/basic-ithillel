@@ -32,6 +32,22 @@ class GalleryController extends AppController{
         $this->render($this->folder, $this->fileName, $list);
     }
 
+    public function test()
+    {
+        $modelClass = new GalleryModel();
+        $list = $modelClass->getGalleryInfo();
+
+        $this->render($this->folder, $this->fileName, $list);
+    }
+
+    public function test1()
+    {
+        $modelClass = new GalleryModel();
+        $list = $modelClass->getSelectedData();
+
+        $this->render($this->folder, $this->fileName, $list);
+    }
+
     public function help()
     {
         echo '<h3>Gallery Controller Help method</h3>' . '<br>';
