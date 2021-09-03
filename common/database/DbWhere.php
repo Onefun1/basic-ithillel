@@ -23,6 +23,11 @@ class DbWhere extends DbConnector
             return NULL;
         }
 
+        if (is_string($this->where))
+        {
+            return $this->where;
+        }
+
         $whereString ='';
 
         foreach ($this->where as $value)
@@ -31,23 +36,15 @@ class DbWhere extends DbConnector
             {
                 foreach ($option as $a => $b)
                 {
-                    if (!empty($whereString))
-                    {
-                        $whereString .= " $key ";
-                    }
+                        if (!empty($whereString))
+                        {
+                            $whereString .= " $key ";
+                        }
 
-                    $whereString .= " $a = $b ";
+                        $whereString .= " $a = $b ";
                 }
             }
         }
         return $whereString;
     }
 }
-
-//'id = 5'
-//[
-//[
-//    'id' => 1,
-//    'litle' => 'teset',
-//]
-//['like', ['columnName', 'value']]

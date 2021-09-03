@@ -51,7 +51,8 @@ class DbSelect extends DbWhere
     public function createWhereString()
     {
         $whereObj = new DbWhere();
-        $whereObj->orWhere([ 'gallery_id' => 2, 'gallery.id' => 0]);
+//        $whereObj->orWhere([ 'gallery_id' => 2, 'gallery.id' => 0]);
+        $whereObj->orWhere(['LIKE', ['columnName', 'value']]);
         $this->where = ' WHERE ' . $whereObj->getWhere();
     }
 
@@ -112,26 +113,3 @@ class DbSelect extends DbWhere
         return $this->buildQueryString($this->tableName, 'table name');
     }
 }
-
-
-
-//public static function getSelectedData(
-//    $selectTarget = '*',
-//    $db_from = '`gallery`',
-//    $joinType = 'inner join',
-//    $joinTarget = '`post`',
-//    $db_on  = NULL,
-//    $onOption = 'gallery.id = post.gallery_id',
-//    $db_where = NULL,
-//    $whereOption = 'gallery_id = 2'): string
-//{
-//    $join = ($joinType !== '') ? ( ' ' . strtoupper($joinType) . ' ' . $joinTarget) : '';
-//    $on = ($join && $db_on !== '') ?  ' ON ' .  $onOption : '';
-//    $where = ($db_where !== '') ? ' WHERE ' . $whereOption . ' ' : '';
-//
-//    $sql = 'SELECT ' . $selectTarget . ' FROM ' . $db_from . $join . $on . $where;
-//
-//    var_dump($sql); // для себя что бы видеть запрос
-//
-//    return $sql;
-//}
