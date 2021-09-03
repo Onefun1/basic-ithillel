@@ -34,20 +34,27 @@ class GalleryModel extends AboutModel
           return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
+    public function getQueryString(): string
+    {
+        $connector = new DbSelect();
+
+        $connector->setTableName('gallery');
+        $connector->setColumnsName('*');
+        $connector->setJoin('INNER JOIN', 'post');
+        $connector->setOn('gallery.id = post.gallery_id');
+        $connector->setOrderBy('gallery.id', 'DESC');
+        $connector->setLimit('4');
+
+        return $connector->createQueryString();
+
+    }
+
     public function getSelectedData(): array
     {
 
         $sortedResult = [];
 
-        $sql = DbSelect::getSelectedData(
-            '*',
-            'gallery',
-            'join',
-            'post',
-            'true',
-            'gallery_id = gallery.id',
-            'true',
-            'gallery_id = 2');
+        $sql = $this->getQueryString();
 
         $result = $this->dbConnect->query($sql);
 
