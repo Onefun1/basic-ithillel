@@ -51,8 +51,7 @@ class DbSelect extends DbWhere
     public function createWhereString()
     {
         $whereObj = new DbWhere();
-//        $whereObj->orWhere([ 'gallery_id' => 2, 'gallery.id' => 0]);
-        $whereObj->orWhere(['LIKE', ['columnName', 'value']]);
+        $whereObj->orWhere([ 'gallery_id' => 2, 'gallery.id' => 0]);
         $this->where = ' WHERE ' . $whereObj->getWhere();
     }
 
