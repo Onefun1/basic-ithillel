@@ -2,7 +2,7 @@
 
 namespace Common\database;
 
-class DbWhere extends DbConnector
+class DbWhere extends DbSql
 {
     protected $where;
 
@@ -14,6 +14,11 @@ class DbWhere extends DbConnector
     public function orWhere($where)
     {
         $this->where[] = ['OR' => $where];
+    }
+
+    public function strWhere($where)
+    {
+        $this->where = $where;
     }
 
     public function getWhere()
@@ -41,7 +46,7 @@ class DbWhere extends DbConnector
                             $whereString .= " $key ";
                         }
 
-                        $whereString .= " $a = $b ";
+                        $whereString .= "$a = $b";
                 }
             }
         }

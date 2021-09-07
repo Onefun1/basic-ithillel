@@ -42,10 +42,12 @@ class GalleryModel extends AboutModel
         $connector->setColumnsName('*');
         $connector->setJoin('INNER JOIN', 'post');
         $connector->setOn('gallery.id = post.gallery_id');
-        $connector->setOrderBy('gallery.id', 'DESC');
+        $connector->setOrderBy('post.title', 'ASC');
         $connector->setLimit('4');
 
-        return $connector->createQueryString();
+        return $connector->createQueryString(['gallery_id' => 2, 'gallery.id' => 2]);
+
+
 
     }
 

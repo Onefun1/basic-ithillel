@@ -4,6 +4,7 @@ namespace Controllers\Home;
 
 use App\Controllers\AppController;
 use App\Model\AboutModel;
+use App\model\GalleryModel;
 
 class AboutController extends AppController{
 
@@ -41,11 +42,38 @@ class AboutController extends AppController{
     {
         echo '<h3>About Controller info method</h3>';
     }
+
     public function about()
     {
         $modelClass = new AboutModel();
         $title = $modelClass->getAboutByTitle('key1');
 
         $this->render($this->folder, $this->fileName, $title);
+    }
+
+    public function select()
+    {
+        $modelClass = new AboutModel();
+        $list = $modelClass->getSelectedData();
+
+        $this->render($this->folder, $this->fileName, $list);
+    }
+
+    public function insert()
+    {
+        $modelClass = new AboutModel();
+        $modelClass->insertData();
+    }
+
+    public function delete()
+    {
+        $modelClass = new AboutModel();
+        $modelClass->deleteData();
+    }
+
+    public function update()
+    {
+        $modelClass = new AboutModel();
+        $modelClass->updateData();
     }
 }

@@ -6,7 +6,6 @@ use Exception;
 
 class DbSelect extends DbWhere
 {
-    protected $tableName;
     protected $columnsName = '*';
     protected $orderBy;
     protected $orderByWhat;
@@ -14,12 +13,6 @@ class DbSelect extends DbWhere
     protected $joinWith;
     protected $on;
     protected $limit;
-    protected $where;
-
-    public function setTableName($tableName)
-    {
-        $this->tableName = $tableName;
-    }
 
     public function setColumnsName($columnsName)
     {
@@ -48,16 +41,20 @@ class DbSelect extends DbWhere
         $this->limit = (isset($limit)) ? ' LIMIT ' . $limit : '';
     }
 
-    public function createWhereString()
+    public function createWhereString($whereOptions)
     {
         $whereObj = new DbWhere();
-        $whereObj->orWhere([ 'gallery_id' => 2, 'gallery.id' => 0]);
+
+        $whereObj->orWhere($whereOptions);
         $this->where = ' WHERE ' . $whereObj->getWhere();
     }
 
-    public function createQueryString(): string
+    public function createQueryString($whereOptions): string
     {
-        $this->createWhereString();
+        if (isset($whereOptions))
+        {
+            $this->createWhereString($whereOptions);
+        }
 
         $sqlString = 'SELECT ' . $this->buildColumns()
             . ' FROM ' . $this->buildTableName()
@@ -67,6 +64,7 @@ class DbSelect extends DbWhere
             . $this->limit;
 
         print_r($sqlString);
+        echo '<br/>';
         return $sqlString;
     }
 

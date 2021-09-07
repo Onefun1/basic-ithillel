@@ -4,7 +4,7 @@ namespace Common\Database;
 
 use PDO;
 
-class DbConnector
+class DbConnector extends DbSql
 {
     private string $dns;
     private $user;
